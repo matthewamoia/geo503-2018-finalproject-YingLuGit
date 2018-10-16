@@ -7,7 +7,7 @@ subtitle: Subtitle here if desired
 # Introduction
 In order to trace the change and improve a city development, it is important for us to map the land cover for cities. However, as the spatial characteristic for each city is not the same, the methods suitable for every city should not be the same. In order to get the most appicable classification method for Buffalo, several commonly used classification methods will be tested and compared in Buffalo. The accuracy of each method will be listed and compared.
 
-> I know words.  I have the best words.  ~ Donald Trump
+> In order to trace the change and improve a city development, it is important for us to map the land cover for cities. However, as the spatial characteristic for each city is not the same, the methods suitable for every city should not be the same. In order to get the most appicable classification method for Buffalo, several commonly used classification methods will be tested and compared in Buffalo. The accuracy of each method will be listed and compared.
 
 # Materials and methods
 
