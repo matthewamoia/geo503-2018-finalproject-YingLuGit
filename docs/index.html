@@ -312,7 +312,7 @@ div.tocify {
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>My really awesome and complete introduction will go here.</p>
+<p>In order to trace the change and improve a city development, it is important for us to map the land cover for cities. However, as the spatial characteristic for each city is not the same, the methods suitable for every city should not be the same. In order to get the most appicable classification method for Buffalo, several commonly used classification methods will be tested and compared in Buffalo. The accuracy of each method will be listed and compared.</p>
 <blockquote>
 <p>I know words. I have the best words. ~ Donald Trump</p>
 </blockquote>
@@ -353,7 +353,7 @@ d = occ(query=sp, from=&#39;ebird&#39;,limit = 100) %&gt;% occ2df()</code></pre>
 <pre class="r"><code># Load coastline
 map=map_data(&quot;world&quot;)
 
-ggplot(d,aes(x=longitude,y=latitude))+
+ggplot()+
   geom_polygon(aes(x=long,y=lat,group=group),data=map)+
   geom_point(col=&quot;red&quot;)+
   coord_equal()</code></pre>
@@ -367,8 +367,7 @@ Map illustrating the known occurrence locations
 <div id="results" class="section level1">
 <h1>Results</h1>
 <p>Show tables, plots, etc. and describe them.</p>
-<pre class="r"><code>hist(d$latitude)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>#hist(d$latitude)</code></pre>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>

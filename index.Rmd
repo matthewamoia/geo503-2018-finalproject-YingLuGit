@@ -62,7 +62,7 @@ This can take a few seconds.
 # Load coastline
 map=map_data("world")
 
-ggplot(d,aes(x=longitude,y=latitude))+
+ggplot()+
   geom_polygon(aes(x=long,y=lat,group=group),data=map)+
   geom_point(col="red")+
   coord_equal()
@@ -74,7 +74,7 @@ ggplot(d,aes(x=longitude,y=latitude))+
 Show tables, plots, etc. and describe them.
 
 ```{r}
-hist(d$latitude)
+#hist(d$latitude)
 ```
 
 # Conclusions
