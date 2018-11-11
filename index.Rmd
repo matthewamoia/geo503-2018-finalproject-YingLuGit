@@ -1,4 +1,4 @@
-
+---
 title: "Buffalo Land Cover Mapping"
 author: Ying Lu
 subtitle: Project for GEO 503
