@@ -29,7 +29,8 @@ library(dplyr)
 library(tidyr)
 library(RStoolbox)
 library(ggplot2) 
-knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling
+library(googledrive)
+#knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling
 ```
 
 I used the `getLandsat_data()` function in `getSpatialData` package to download Landsat Level-1 imagery from [AWS](  https://aws.amazon.com/what-is-cloud-computing/). However, in order to apply the trained model in 2018 to other years, the surface referance images are required, which should be applied from [USGS earthexplorer](https://earthexplorer.usgs.gov/). So, at last, I download all the data from [USGS earthexplorer](https://earthexplorer.usgs.gov/)
@@ -68,6 +69,18 @@ buffaloBoundary = st_as_sf(buffaloBoundary)
 labeledROI <- shapefile('LandsatImage/Training data/Training_data.shp')
 
 ##get the Landsat data SR
+#Download from Google Drive
+destfile <- paste("LandsatImage/HistoricalImage/2018LandsatImage", ".zip",sep = "", collapse = "")
+drive_auth_config(active = FALSE)
+#auth <- callModule(gar_auth_js, "auth_demo")
+#origop <- options("httr_oauth_cache")
+#options(httr_oauth_cache=TRUE)
+#drive_auth(reset=TRUE, use_oob=TRUE) 
+drive_download(as_id("1dGQ7ipGSjGuPNMa5Hzg-aBWT0XroxG0G"), path = destfile, overwrite = TRUE)
+#download.file("https://drive.google.com/open?id=1dGQ7ipGSjGuPNMa5Hzg-aBWT0XroxG0G", destfile)
+#options(httr_oauth_cache=origop)
+unzip(destfile, exdir = "LandsatImage/HistoricalImage")
+
 r1 <- raster("LandsatImage/HistoricalImage/LC08_L1TP_017030_20180823_20180829_01_T1_sr_band1.tif")
 r2 <- raster("LandsatImage/HistoricalImage/LC08_L1TP_017030_20180823_20180829_01_T1_sr_band2.tif")
 r3 <- raster("LandsatImage/HistoricalImage/LC08_L1TP_017030_20180823_20180829_01_T1_sr_band3.tif")

@@ -333,7 +333,8 @@ library(dplyr)
 library(tidyr)
 library(RStoolbox)
 library(ggplot2) 
-knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling</code></pre>
+library(googledrive)
+#knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling</code></pre>
 <p>I used the <code>getLandsat_data()</code> function in <code>getSpatialData</code> package to download Landsat Level-1 imagery from <a href="https://aws.amazon.com/what-is-cloud-computing/">AWS</a>. However, in order to apply the trained model in 2018 to other years, the surface referance images are required, which should be applied from <a href="https://earthexplorer.usgs.gov/">USGS earthexplorer</a>. So, at last, I download all the data from <a href="https://earthexplorer.usgs.gov/">USGS earthexplorer</a></p>
 <p>The following code explains how to download Landsat date using <code>getSpatialData</code> package.</p>
 <pre class="r"><code>## set aoi and time range for the query
@@ -354,6 +355,14 @@ getLandsat_preview(query[1,])
 files &lt;- getLandsat_data(records = query[1,], level = &quot;l1&quot;, source = &quot;auto&quot;)
 tilPath = files[[1]][grepl(&quot;.TIF$&quot;,files[[1]])]</code></pre>
 <p>The Landsat 8 imagery in Augest 23, 2018 was used in this study. A fake color image of this image is posted below.</p>
+<pre><code>## googledrive auth state: inactive
+## oauth app: tidyverse
+## API key: set
+## token: not loaded</code></pre>
+<pre><code>## File downloaded:
+##   * 2018LandsatImage.zip
+## Saved locally as:
+##   * LandsatImage/HistoricalImage/2018LandsatImage.zip</code></pre>
 <div class="figure">
 <img src="index_files/figure-html/unnamed-chunk-3-1.png" alt="Fig1.Landsat 8 image in Augest 23, 2018" width="480" />
 <p class="caption">
@@ -401,34 +410,34 @@ Fig2.Landsat 8 image at Buffalo in 2018
 <pre><code>## [1] &quot;Random forest&quot;</code></pre>
 <pre><code>##                      Reference
 ## Prediction            Vegetation Impervious surface  Soil Water
-##   Vegetation                 502                   0    0     0
-##   Impervious surface           0                 359    0     0
+##   Vegetation                 500                   0    0     0
+##   Impervious surface           0                 361    0     0
 ##   Soil                         0                   0  343     0
 ##   Water                        0                   0    0   400</code></pre>
 <pre><code>##       Accuracy          Kappa  AccuracyLower  AccuracyUpper   AccuracyNull 
-##      1.0000000      1.0000000      0.9977028      1.0000000      0.3129676 
+##      1.0000000      1.0000000      0.9977028      1.0000000      0.3117207 
 ## AccuracyPValue  McnemarPValue 
 ##      0.0000000            NaN</code></pre>
 <pre><code>## [1] &quot;Support Vector Machine&quot;</code></pre>
 <pre><code>##                      Reference
 ## Prediction            Vegetation Impervious surface  Soil Water
-##   Vegetation                 502                   0    0     0
-##   Impervious surface           0                 357    0     0
-##   Soil                         0                   2  343     0
-##   Water                        0                   0    0   400</code></pre>
+##   Vegetation                 500                   0    0     0
+##   Impervious surface           0                 360    0     0
+##   Soil                         0                   0  343     0
+##   Water                        0                   1    0   400</code></pre>
 <pre><code>##       Accuracy          Kappa  AccuracyLower  AccuracyUpper   AccuracyNull 
-##      0.9987531      0.9983242      0.9955032      0.9998490      0.3129676 
+##      0.9993766      0.9991623      0.9965314      0.9999842      0.3117207 
 ## AccuracyPValue  McnemarPValue 
 ##      0.0000000            NaN</code></pre>
 <pre><code>## [1] &quot;Maximum likelihood&quot;</code></pre>
 <pre><code>##                      Reference
 ## Prediction            Vegetation Impervious surface  Soil Water
-##   Vegetation                 502                   0    0     0
-##   Impervious surface           0                 359    0     0
+##   Vegetation                 500                   0    0     0
+##   Impervious surface           0                 361    0     0
 ##   Soil                         0                   0  343     0
 ##   Water                        0                   0    0   400</code></pre>
 <pre><code>##       Accuracy          Kappa  AccuracyLower  AccuracyUpper   AccuracyNull 
-##      1.0000000      1.0000000      0.9977028      1.0000000      0.3129676 
+##      1.0000000      1.0000000      0.9977028      1.0000000      0.3117207 
 ## AccuracyPValue  McnemarPValue 
 ##      0.0000000            NaN</code></pre>
 <p>According to the confusion matrix and the overall accuracy, Random Forest was selected as a good method for landcover mapping for Buffalo. The classified map of Buffalo in 2013,2015,2017 and 2018 were posted in Fig.3.</p>
