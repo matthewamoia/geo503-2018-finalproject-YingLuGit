@@ -202,9 +202,9 @@ for(i in 1:length(landsatNames)){
   rm(r1,r2,r3,r4,r5,r6,r7)
   gc()
  
-  BuffaloLandsatBrick <- raster::crop(landsetImageBrick,bbox(buffaloBoundary_Spatial))%>% mask(buffaloBoundary_Spatial) 
+  #BuffaloLandsatBrick <- raster::crop(landsetImageBrick,bbox(buffaloBoundary_Spatial))%>% mask(buffaloBoundary_Spatial) 
   
-  preds_rf <- clusterR(BuffaloLandsatBrick, raster::predict, args = list(model = modFit_rf))
+  preds_rf <- clusterR(landsetImageBrick, raster::predict, args = list(model = modFit_rf))
   
   classifiedImage <- stack(classifiedImage, preds_rf)
   names(classifiedImage)[i] <- paste("C",2011+i*2,sep = "", collapse = "")
@@ -212,7 +212,7 @@ for(i in 1:length(landsatNames)){
 #  rf <- writeRaster(preds_rf, filename=writePath, format="GTiff", overwrite=TRUE)
   
   rm(landsetImageBrick)
-  rm(BuffaloLandsatBrick)
+  #rm(BuffaloLandsatBrick)
   gc()
  
 }
@@ -267,11 +267,13 @@ factorMap2017 <- as.factor(classifiedImage$C2017)
 levels(factorMap2017) <- level
 levelplot(factorMap2017, main="2017 Buffalo", col.regions=rev(terrain.colors(4)), xlab="", ylab="", axes=FALSE)
 ```
-```{r,echo = FALSE, results = 'hide', message=F, warning=F,fig.width=4, fig.height=4, fig.cap="Fig3. Classified image at Buffalo"}
+```{r,echo = FALSE, results = 'hide', message=F, warning=F,fig.width=4, fig.height=4}
 factorMap2018 <- as.factor(preds_rf2018)
 levels(factorMap2018) <- level
 levelplot(factorMap2018, main="2018 Buffalo", col.regions=rev(terrain.colors(4)), xlab="", ylab="", axes=FALSE)
 
+```
+```{r,echo = FALSE, results = 'hide', message=F, warning=F,fig.width=4, fig.height=4, fig.cap="Fig3. Classified image at Buffalo"}
 ```
 
 According to the classfied maps, the change of every landcover class can be derived.
@@ -288,7 +290,7 @@ data = data.frame( year = c(2013,2015,2017,2018),
                    Vegetation = c(sum(Class2013[[1]] == 1),sum(Class2015[[1]] == 1),sum(Class2017[[1]] == 1),sum(Class2018[[1]] == 1)),
                    ImperviousSurface = c(sum(Class2013[[1]] == 2),sum(Class2015[[1]] == 2),sum(Class2017[[1]] == 2),sum(Class2018[[1]] == 2)),
                    Soil = c(sum(Class2013[[1]] == 3),sum(Class2015[[1]] == 3),sum(Class2017[[1]] == 3),sum(Class2018[[1]] == 3)),
-                   Water = c(sum(Class2013[[1]] == 4),sum(Class2015[[1]] == 4),sum(Class2017[[1]] == 5),sum(Class2017[[1]] == 4)))
+                   Water = c(sum(Class2013[[1]] == 4),sum(Class2015[[1]] == 4),sum(Class2017[[1]] == 4),sum(Class2018[[1]] == 4)))
 
 dataWrangle = gather(data, "class", "area/km2", 2:5)
 dataWrangle$`area/km2` = dataWrangle$`area/km2`*0.9/1000
