@@ -72,13 +72,7 @@ labeledROI <- shapefile('LandsatImage/Training data/Training_data.shp')
 #Download from Google Drive
 destfile <- paste("LandsatImage/HistoricalImage/2018LandsatImage", ".zip",sep = "", collapse = "")
 drive_auth_config(active = FALSE)
-#auth <- callModule(gar_auth_js, "auth_demo")
-#origop <- options("httr_oauth_cache")
-#options(httr_oauth_cache=TRUE)
-#drive_auth(reset=TRUE, use_oob=TRUE) 
 drive_download(as_id("1dGQ7ipGSjGuPNMa5Hzg-aBWT0XroxG0G"), path = destfile, overwrite = TRUE)
-#download.file("https://drive.google.com/open?id=1dGQ7ipGSjGuPNMa5Hzg-aBWT0XroxG0G", destfile)
-#options(httr_oauth_cache=origop)
 unzip(destfile, exdir = "LandsatImage/HistoricalImage")
 
 r1 <- raster("LandsatImage/HistoricalImage/LC08_L1TP_017030_20180823_20180829_01_T1_sr_band1.tif")
