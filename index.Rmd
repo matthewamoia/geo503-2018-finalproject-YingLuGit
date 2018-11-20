@@ -4,11 +4,11 @@ author: Ying Lu
 subtitle: Project for GEO 503
 ---
 
-# Introduction
+# Introduction 
 In order to trace the change and improve a city development, it is important for us to map the land use for cities. However, the update of land use images published by government is relatively slow for monitoring some small changes. The public of Landsat imagery offers us an opportunity to map land cover of cities using remote sensing methods. Nevertheless, the spatial characteristic for each city is not the same, the methods suitable for every city should not be the same. In order to get the most applicable classification method for Buffalo with Landsat imagery, three commonly used classification methods -Random Forest, Support Vector Machine and Maximum likelihood- were trained and tested in Buffalo with Landsat 8 images. Random Forest performed relatively better than other two. Therefore, the land use images in 2013, 2015, 2017 were also created with the trained Random Forest model. According to the result, impervious surface covers a great part of Buffalo, which is 59.34% in 2018. The temporal land cover maps of Buffalo show that Buffalo does not change a lot in the past 5 years. This study offers a good reference for land cover map for Buffalo city and give a general information of the change of the city. 
 
 
-# Materials and methods
+# Materials and methods 
 
 I used a Landsat 8 image in Buffalo in Augest 23, 2018 to map the landcover of Buffalo. The landcover of Buffalo was classified into four classes: vegetation, impervious surface, soil and water. There were three main steps for this study.
 
@@ -283,7 +283,7 @@ levelplot(factorMap2018, main="2018 Buffalo", col.regions=rev(terrain.colors(4))
 ```{r,echo = FALSE, results = 'hide', message=F, warning=F,fig.width=4, fig.height=4, fig.cap="Fig3. Classified image at Buffalo"}
 ```
 
-According to the classfied maps, the change of every landcover class can be derived.
+According to the classfied maps, the change of every landcover class can be derived. 
 
 ```{r,echo = FALSE, results = 'hide', message=F, warning=F,fig.width=6, fig.height=3, fig.cap="Fig4.Land cover change of Buffalo"}
 ####plot the change of landcover landuse
@@ -307,7 +307,7 @@ ggplot(dataWrangle, aes(x=year, y=`area/km2`)) +
 ```
 
 
-# Conclusions
+# Conclusions 
 
 This study test three classification method in mapping the land cover in Buffalo. It showed that Random Forest performed good when doing the coarse classisication. However, the change inside every land cover can not be detected with this method. Thus, more comprehensive methods are under requirement for the detail change detection.
 
